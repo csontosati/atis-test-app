@@ -1,0 +1,15 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: atis-test-app-pipeline
+spec:
+  tasks:
+    - name: hello-world-task
+      taskSpec:
+        steps:
+          - name: print-hello
+            image: registry.access.redhat.com/ubi9/ubi-minimal:latest
+            script: |
+              #!/usr/bin/env bash
+              echo "Hello World from the integration pipeline!"
+              echo "OpenShift pipeline executed successfully."
