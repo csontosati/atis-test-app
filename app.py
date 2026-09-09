@@ -53,6 +53,10 @@ def is_even(n: int) -> bool:
     return n % 2 == 0
 
 
+def is_odd(n: int) -> bool:
+    return n % 2 != 0
+
+
 def main() -> None:
     print(greet("ATIS"))
     print(f"2 + 3 = {calculate('add', 2, 3)}")

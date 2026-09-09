@@ -2,7 +2,7 @@
 
 import unittest
 
-from app import add, calculate, divide, grade, greet, is_even, subtract
+from app import add, calculate, divide, grade, greet, is_even, is_odd, subtract
 
 
 class TestGreet(unittest.TestCase):
@@ -49,6 +49,12 @@ class TestIsEven(unittest.TestCase):
     def test_is_even(self):
         self.assertTrue(is_even(2))
         self.assertFalse(is_even(3))
+
+
+class TestIsOdd(unittest.TestCase):
+    def test_is_odd(self):
+        self.assertTrue(is_odd(3))
+        self.assertFalse(is_odd(4))
 
 
 if __name__ == "__main__":
