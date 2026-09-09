@@ -49,6 +49,10 @@ def grade(score: int) -> str:
     return "F"
 
 
+def is_even(n: int) -> bool:
+    return n % 2 == 0
+
+
 def main() -> None:
     print(greet("ATIS"))
     print(f"2 + 3 = {calculate('add', 2, 3)}")
