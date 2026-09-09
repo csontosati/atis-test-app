@@ -9,6 +9,9 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
 
     steps:
       - name: Checkout
@@ -27,7 +30,7 @@ jobs:
       - name: Run tests with coverage
         run: pytest --cov=app --cov-branch --cov-report=xml
       
-      - name: Upload coverage to Codecov
+      - name: Upload coverage to Codecov (staging)
         if: success() && hashFiles('coverage.xml') != ''
         uses: codecov/codecov-action@0fb7174895f61a3b6b78fc075e0cd60383518dac # v5
         with:
@@ -38,4 +41,13 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           url: ${{ secrets.CODECOV_URL }}
           slug: ${{ github.repository }}
+
+      - name: Upload coverage to app.codecov.io
+        if: success() && hashFiles('coverage.xml') != ''
+        uses: codecov/codecov-action@0fb7174895f61a3b6b78fc075e0cd60383518dac # v5
+        with:
+          files: coverage.xml
+          flags: unit-tests
+          use_oidc: true
+          fail_ci_if_error: false
 
